@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>專屬將軍令生成器</title>
+    <style>
+        body {
+            margin: 0;
+            background: url('背景_備戰沙場電玩風.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: "標楷體", "KaiTi", serif;
+            color: #fff8dc;
+            text-align: center;
+        }
+        .content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            margin: 0 auto;
+            max-width: 600px;
+            margin-top: 50px;
+            border-radius: 10px;
+        }
+        input {
+            font-size: 20px;
+            padding: 8px;
+            margin-top: 20px;
+            width: 300px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #dec97c;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #preview {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>通過試煉，獲得你的專屬《將軍令》！</h2>
+        <p>請輸入你的名字：</p>
+        <input type="text" id="nameInput" placeholder="輸入名字">
+        <br>
+        <button onclick="generateToken()">生成令牌</button>
+        <button onclick="downloadToken()">下載令牌</button>
+        <br>
+        <canvas id="tokenCanvas" width="768" height="1152" style="display:none;"></canvas>
+        <img id="preview" src="" alt="令牌預覽" width="250" style="display:none;"/>
+    </div>
+
+    <script>
+        function generateToken() {
+            const name = document.getElementById("nameInput").value;
+            const canvas = document.getElementById("tokenCanvas");
+            const ctx = canvas.getContext("2d");
+            const img = new Image();
+            img.src = "將軍令_高質感令牌.png";
+            img.onload = function() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "gold";
+                ctx.font = "bold 36px KaiTi, serif";
+                ctx.textAlign = "center";
+                ctx.fillText(name, canvas.width / 2, 1020);
+                const dataURL = canvas.toDataURL();
+                const preview = document.getElementById("preview");
+                preview.src = dataURL;
+                preview.style.display = "block";
+            }
+        }
+
+        function downloadToken() {
+            const canvas = document.getElementById("tokenCanvas");
+            const link = document.createElement("a");
+            link.download = "我的將軍令.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
