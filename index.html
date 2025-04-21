@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>我的將軍令</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #ffd700;
+            font-family: "標楷體", "KaiTi", serif;
+            text-align: center;
+            padding: 30px;
+        }
+        #token {
+            background-image: url('令牌.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 400px;
+            height: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+        #text {
+            position: absolute;
+            width: 100%;
+            top: 65%;
+            font-size: 24px;
+            color: gold;
+        }
+        input {
+            font-size: 20px;
+            padding: 5px;
+        }
+        button {
+            font-size: 20px;
+            padding: 8px 16px;
+            margin-top: 10px;
+            background-color: gold;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>將軍令．三技傳承之煉</h1>
+    <h2>御令戰將</h2>
+    <p>請輸入你的名字：</p>
+    <input type="text" id="nameInput" placeholder="輸入名字">
+    <button onclick="updateToken()">生成令牌</button>
+    <div id="token">
+        <div id="text"></div>
+    </div>
+    <script>
+        function updateToken() {
+            var name = document.getElementById("nameInput").value;
+            document.getElementById("text").innerText = name;
+        }
+    </script>
+</body>
+</html>
